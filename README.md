@@ -27,8 +27,8 @@ Repositories provide asynchronous API (Publisher from Combine) for making CRUD o
 
 
 ### WishList Screen List of wishList product 
+<img width="501" alt="Screenshot 2025-05-07 at 8 55 25 PM" src="https://github.com/user-attachments/assets/4b5931bd-29f3-4aab-ac31-415f3f909834" />
 
-![Uploading Screenshot 2025-05-07 at 8.54.33 PM.png…]()
 
 ### Loading screen Screen
 
