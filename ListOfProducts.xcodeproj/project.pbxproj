@@ -195,6 +195,8 @@
 			);
 			mainGroup = 2135D80F2DC61FC0002AB647;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2135D8192DC61FC0002AB647 /* Products */;
 			projectDirPath = "";
@@ -491,6 +493,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2KDEH69VUR;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = nermeen.tomoum.ListOfProductsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -508,6 +511,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2KDEH69VUR;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = nermeen.tomoum.ListOfProductsUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
