@@ -30,3 +30,10 @@ Repositories provide asynchronous API (Publisher from Combine) for making CRUD o
 
 <img width="463" alt="Screenshot 2025-05-07 at 1 56 19 PM" src="https://github.com/user-attachments/assets/7ffb2e7f-209b-42e2-9b24-89b3b69161f0" />
 
+### Loading screen Screen
+
+<img width="484" alt="Screenshot 2025-05-07 at 2 57 09 PM" src="https://github.com/user-attachments/assets/a858bbe3-50d7-43c1-bca7-a9f8c12d3706" />
+
+### Error Handling Screen
+
+<img width="468" alt="Screenshot 2025-05-07 at 2 55 58 PM" src="https://github.com/user-attachments/assets/fb71d242-b617-407f-84ed-9c882a5058bb" />
