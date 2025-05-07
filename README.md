@@ -22,13 +22,13 @@ Data Access Layer is represented by `Repositories` .
 Repositories provide asynchronous API (Publisher from Combine) for making CRUD operations on the backend or a local database. They don't contain business logic, neither do they mutate the AppState. Repositories are accessible and used only by the ViewModels .
 
 ### Home Screen Products Grid
+<img width="504" alt="Screenshot 2025-05-07 at 8 54 12 PM" src="https://github.com/user-attachments/assets/60f75820-1e32-4f6e-894f-cd0bf0dc5c72" />
 
-<img width="478" alt="Screenshot 2025-05-07 at 1 48 31 PM" src="https://github.com/user-attachments/assets/e8bae4e8-b015-4760-b874-7941081084d0" />
 
 
 ### WishList Screen List of wishList product 
 
-<img width="463" alt="Screenshot 2025-05-07 at 1 56 19 PM" src="https://github.com/user-attachments/assets/7ffb2e7f-209b-42e2-9b24-89b3b69161f0" />
+![Uploading Screenshot 2025-05-07 at 8.54.33 PM.png…]()
 
 ### Loading screen Screen
 
