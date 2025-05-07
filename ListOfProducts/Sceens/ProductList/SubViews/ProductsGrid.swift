@@ -78,7 +78,6 @@ private extension ProductsGridView {
                         WishListView()
                             .onDisappear {
                                 loadProductsList(forceReload: false)
-                                
                             }
                     }
                 }
@@ -104,7 +103,9 @@ private extension ProductsGridView {
     }
     
     func failedView(_ error: Error) -> some View {
-        ErrorView(error: error, retryAction: {})
+        ErrorView(error: error, retryAction: {
+            loadProductsList(forceReload: false)
+        })
     }
 }
 
