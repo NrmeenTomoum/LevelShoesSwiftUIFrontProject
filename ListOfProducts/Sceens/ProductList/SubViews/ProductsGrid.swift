@@ -5,11 +5,14 @@
 //  Created by Nermeen Tomoum on 03/05/2025.
 //
 import SwiftUI
+import Combine
 
 struct ProductsGridView: View {
     @EnvironmentObject var user: User
     @Environment(\.injected) private var injected: DIContainer
     @State var products: [Product] = []
+    @State var productsUpdtaesInfo:  Loadable<[Product]>
+
     @State private(set) var productsState: Loadable<[Product]>
     @State private(set) var stateofProductChanged: Loadable<Product>
     
@@ -20,6 +23,7 @@ struct ProductsGridView: View {
     init(state: Loadable<[Product]> = .notRequested) {
         self._productsState = .init(initialValue: state)
         self._stateofProductChanged = .init(initialValue: .notRequested)
+        self._productsUpdtaesInfo = .init(initialValue: .notRequested)
     }
     
     var body: some View {
@@ -83,6 +87,10 @@ private extension ProductsGridView {
                 }
             }
         }
+        .onReceive(productsUpdate) { update in
+            self.productsUpdtaesInfo = update
+        }
+        
     }
     
     func defaultView() -> some View {
@@ -114,7 +122,7 @@ private extension ProductsGridView {
     private func loadProductsList(forceReload: Bool) {
         guard forceReload || products.isEmpty else { return }
         $productsState.load {
-            try await  injected.viewModels.productViewModel.fetchData(products: products, userId: "68150b6a29021b5984886601")
+            try await  injected.viewModels.productViewModel.fetchData( userId: "68150b6a29021b5984886601")
         }
     }
     
@@ -122,6 +130,10 @@ private extension ProductsGridView {
         $stateofProductChanged.load {
             try await  injected.viewModels.productViewModel.onToggle(userId: "68150b6a29021b5984886601", productId: productId, isFavorite: isFavorite)
         }
+    }
+    
+    var productsUpdate: AnyPublisher<Loadable<[Product]>, Never> {
+        injected.appState.updates(for: \.userData.products)
     }
     
 }

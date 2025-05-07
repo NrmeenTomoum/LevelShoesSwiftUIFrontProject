@@ -16,9 +16,11 @@ protocol WishListViewModelProtocol {
 class WishListViewModel: WishListViewModelProtocol {
 
     @ObservationIgnored let repository: WishListRepositoryProtocol
-    
-    init( repository: WishListRepositoryProtocol) {
+    let appState: Store<AppState>
+
+    init( repository: WishListRepositoryProtocol, appState: Store<AppState>) {
         self.repository = repository
+        self.appState = appState
     }
     
     func fetchWishListProducts(products:[Product],  userId: String) async throws -> [Product] {
@@ -64,7 +66,6 @@ struct StubWishListViewModel: WishListViewModelProtocol {
         throw ValueIsMissingError()
     }
     
-    var isLoading: Bool
     func deleteProduct(for userId: String, productId: String) async throws -> Product {
         throw ValueIsMissingError()
     }

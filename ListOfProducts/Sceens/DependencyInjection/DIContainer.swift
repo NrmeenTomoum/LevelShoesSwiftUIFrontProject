@@ -7,15 +7,21 @@
 
 import SwiftUI
 
+struct AppState: Equatable {
+    var userData = UserData()
+}
+
+extension AppState {
+    struct UserData: Equatable {
+        var products: Loadable<[Product]> = .notRequested
+        var WishListProducts: Loadable<[Product]> = .notRequested
+    }
+}
+
 struct DIContainer {
     
-    // let appState: Store<AppState>
+    let appState: Store<AppState>
     let viewModels: ViewModels
-    // appState: AppState,
-    init( viewModels: ViewModels) {
-        //        self.appState = appState
-        self.viewModels = viewModels
-    }
 }
 
 extension DIContainer {
@@ -31,13 +37,13 @@ extension DIContainer {
         let wishListViewModel: WishListViewModelProtocol
         
         static var stub: Self {
-            .init(productViewModel: StubProductListViewModel(), wishListViewModel: StubWishListViewModel(isLoading: false))
+            .init(productViewModel: StubProductListViewModel(), wishListViewModel: StubWishListViewModel())
         }
     }
 }
 
 extension EnvironmentValues {
-    @Entry var injected: DIContainer = DIContainer( viewModels: .stub)
+    @Entry var injected: DIContainer = DIContainer( appState: .init(AppState()), viewModels: .stub)
 }
 
 extension View {
