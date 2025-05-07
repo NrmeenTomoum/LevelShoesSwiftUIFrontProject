@@ -9,17 +9,12 @@ import Combine
 import Observation
 
 protocol WishListViewModelProtocol {
-    var isLoading: Bool {get}
     func deleteProduct(for userId: String, productId: String) async throws -> Product
     func fetchWishListProducts(products:[Product],  userId: String) async throws -> [Product]
 }
 
-@Observable
-class WishListViewModel:BaseViewModel, WishListViewModelProtocol {
-    
-    var wishListproducts: [Product] = []
-    var isLoading = false
-    
+class WishListViewModel: WishListViewModelProtocol {
+
     @ObservationIgnored let repository: WishListRepositoryProtocol
     
     init( repository: WishListRepositoryProtocol) {
@@ -27,24 +22,23 @@ class WishListViewModel:BaseViewModel, WishListViewModelProtocol {
     }
     
     func fetchWishListProducts(products:[Product],  userId: String) async throws -> [Product] {
-
-            do {
-                let response = try await repository.getWishListProducts(for: userId)
-                return response.data
-            } catch {
-                print("Failed to request products")
-                throw WishListError.failedToFetchProducts
-            }
+        
+        do {
+            let response = try await repository.getWishListProducts(for: userId)
+            return response.data
+        } catch {
+            print("Failed to request products")
+            throw WishListError.failedToFetchProducts
+        }
     }
     
     func deleteProduct(for userId: String, productId: String) async throws -> Product {
-                do {
-                let response = try await repository.deleteWishListProduct(for: userId, productID: productId)
-                self.wishListproducts.removeAll { $0.id == productId }
-                    return response.data
-            } catch {
-                throw WishListError.failedToDeleteProduct
-            }
+        do {
+            let response = try await repository.deleteWishListProduct(for: userId, productID: productId)
+            return response.data
+        } catch {
+            throw WishListError.failedToDeleteProduct
+        }
     }
     
 }

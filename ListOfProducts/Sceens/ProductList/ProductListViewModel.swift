@@ -8,26 +8,13 @@ import Foundation
 import Combine
 import Observation
 
-@Observable
-class BaseViewModel {
-    var showGeneralError = false
-    var showGeneralErrorMessage: String?
-    var apiMessageforToast: String?
-    var noInternetConnection: Bool = false
-}
-
 protocol ProductListViewModelProtocol {
     
     func fetchData(products:[Product], userId: String) async throws -> [Product]
     func onToggle(userId: String, productId: String, isFavorite: Bool) async throws -> Product
 }
 
-@Observable
-class ProductListViewModel:BaseViewModel, ObservableObject, ProductListViewModelProtocol {
-    
-    var products: [Product] = []
-    var isLoading = false
-    var wishListproducts: [Product] = []
+class ProductListViewModel: ProductListViewModelProtocol {
     @ObservationIgnored let wishListRepository: WishListRepositoryProtocol
     @ObservationIgnored let  productRepository: ProductRepositoryProtocol
     
@@ -42,10 +29,8 @@ class ProductListViewModel:BaseViewModel, ObservableObject, ProductListViewModel
             async let productsFetch = self.fetchProducts(userId: userId)
             async let wishlistFetch = self.fetchWishListProducts(userId: userId)
             var (products, wishlistProducts) = try await (productsFetch, wishlistFetch)
-            
-            self.wishListproducts = wishlistProducts
             for i in 0..<products.count {
-                products[i].isFavorite = wishListproducts.contains(products[i])
+                products[i].isFavorite = wishlistProducts.contains(products[i])
             }
             return products
         } catch {
@@ -88,7 +73,6 @@ class ProductListViewModel:BaseViewModel, ObservableObject, ProductListViewModel
     func deleteProductFromWishList(for userId: String, productId: String) async throws -> Product {
         do{
             let response = try await wishListRepository.deleteWishListProduct(for: userId, productID: productId)
-            self.wishListproducts.removeAll { $0.id == productId }
             return response.data
         } catch {
             throw ProductError.faiiledToDelete
