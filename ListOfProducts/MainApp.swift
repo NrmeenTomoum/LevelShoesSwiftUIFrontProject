@@ -25,12 +25,3 @@ extension AppEnvironment {
                     .inject(diContainer)
         }
     }
-
-//    private var onChangeHandler: (EnvironmentValues.Diff) -> Void {
-//        return { diff in
-//            if !diff.isDisjoint(with: [.locale, .sizeCategory]) {
-//                self.diContainer.appState[\.routing] = AppState.ViewRouting()
-//            }
-//        }
-//    }
-

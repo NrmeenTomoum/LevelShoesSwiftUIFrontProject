@@ -11,10 +11,8 @@ import Foundation
 
 @MainActor
 final class AppDelegate: UIResponder, UIApplicationDelegate {
-
     private lazy var environment = AppEnvironment.bootstrap()
- //   private var systemEventsHandler: SystemEventsHandler { environment.systemEventsHandler }
-
+    
     var rootView: some View {
         environment.rootView
     }
@@ -24,12 +22,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        let config: UISceneConfiguration = UISceneConfiguration(name: nil, sessionRole: connectingSceneSession.role)
-        config.delegateClass = SceneDelegate.self
-      //  SceneDelegate.register(systemEventsHandler)
-        return config
-    }
+//    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+////        let config: UISceneConfiguration = UISceneConfiguration(name: nil, sessionRole: connectingSceneSession.role)
+////        config.delegateClass = SceneDelegate.self
+//      //  SceneDelegate.register(systemEventsHandler)
+//        return config
+//    }
 }
 
 // MARK: - SceneDelegate
