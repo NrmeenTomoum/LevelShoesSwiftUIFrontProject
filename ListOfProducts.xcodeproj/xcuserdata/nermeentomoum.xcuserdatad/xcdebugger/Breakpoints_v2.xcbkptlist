@@ -434,50 +434,6 @@
             endingLineNumber = "30"
             landmarkName = "addWishListProduct(for:productID:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "13DD5E5E-BB99-48BD-A37C-03C8DA694FDE - 59487700df3592c3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for ListOfProducts.WishListRepository.addWishListProduct(for: Swift.String, productID: Swift.String) async throws -&gt; ListOfProducts.ApiResponse&lt;ListOfProducts.Product&gt;"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/WishList/WishListRepository.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30">
-               </Location>
-               <Location
-                  uuid = "13DD5E5E-BB99-48BD-A37C-03C8DA694FDE - de1dfb05455534c5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for ListOfProducts.WishListRepository.addWishListProduct(for: Swift.String, productID: Swift.String) async throws -&gt; ListOfProducts.ApiResponse&lt;ListOfProducts.Product&gt;"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/WishList/WishListRepository.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30">
-               </Location>
-               <Location
-                  uuid = "13DD5E5E-BB99-48BD-A37C-03C8DA694FDE - c97e9e3d4f4ea6c1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for ListOfProducts.WishListRepository.addWishListProduct(for: Swift.String, productID: Swift.String) async throws -&gt; ListOfProducts.ApiResponse&lt;ListOfProducts.Product&gt;"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/WishList/WishListRepository.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -494,64 +450,6 @@
             endingLineNumber = "98"
             landmarkName = "loadProductsList(forceReload:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "E30E0AD5-76CC-4F6D-A9F2-EF754EC86AAA - ec1cb13d2926d203"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 () async throws -&gt; Swift.Array&lt;ListOfProducts.Product&gt; in ListOfProducts.WishListView.loadProductsList(forceReload: Swift.Bool) -&gt; ()"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/WishList/WishListView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "98"
-                  endingLineNumber = "98">
-               </Location>
-               <Location
-                  uuid = "E30E0AD5-76CC-4F6D-A9F2-EF754EC86AAA - d1c853371bd55655"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for closure #1 () async throws -&gt; Swift.Array&lt;ListOfProducts.Product&gt; in ListOfProducts.WishListView.loadProductsList(forceReload: Swift.Bool) -&gt; ()"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/WishList/WishListView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "98"
-                  endingLineNumber = "98">
-               </Location>
-               <Location
-                  uuid = "E30E0AD5-76CC-4F6D-A9F2-EF754EC86AAA - 98b956dd85ff160d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 () async throws -&gt; Swift.Array&lt;ListOfProducts.Product&gt; in ListOfProducts.WishListView.loadProductsList(forceReload: Swift.Bool) -&gt; ()"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/WishList/WishListView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "98"
-                  endingLineNumber = "98">
-               </Location>
-               <Location
-                  uuid = "E30E0AD5-76CC-4F6D-A9F2-EF754EC86AAA - 7eebc56dd3ecf80c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for closure #1 () async throws -&gt; Swift.Array&lt;ListOfProducts.Product&gt; in ListOfProducts.WishListView.loadProductsList(forceReload: Swift.Bool) -&gt; ()"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/WishList/WishListView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "98"
-                  endingLineNumber = "98">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -568,36 +466,6 @@
             endingLineNumber = "54"
             landmarkName = "loadedView(products:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "610E145B-2CA5-4F83-B573-08CC37D0A1B3 - 832e46cef7941721"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.navigationDestination&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_1_0: Swift.Hashable, &#x3c4;_1_1: SwiftUI.View&gt;(for: &#x3c4;_1_0.Type, destination: (&#x3c4;_1_0) -&gt; &#x3c4;_1_1) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.ScrollView&lt;&lt;&lt;opaque return type of SwiftUI.View.navigationDestination&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_1_0: Swift.Hashable, &#x3c4;_1_1: SwiftUI.View&gt;(for: &#x3c4;_1_0.Type, destination: (&#x3c4;_1_0) -&gt; &#x3c4;_1_1) -&gt; some&gt;&gt;.0&gt; in ListOfProducts.ProductsGridView.loadedView(products: Swift.Array&lt;ListOfProducts.Product&gt;) -&gt; some"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/ProductList/SubViews/ProductsGrid.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54">
-               </Location>
-               <Location
-                  uuid = "610E145B-2CA5-4F83-B573-08CC37D0A1B3 - 799ac20e362b36a8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; SwiftUI.ForEach&lt;Swift.Range&lt;Swift.Int&gt;, Swift.Int, ListOfProducts.ProductView&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.navigationDestination&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_1_0: Swift.Hashable, &#x3c4;_1_1: SwiftUI.View&gt;(for: &#x3c4;_1_0.Type, destination: (&#x3c4;_1_0) -&gt; &#x3c4;_1_1) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; SwiftUI.ScrollView&lt;&lt;&lt;opaque return type of SwiftUI.View.navigationDestination&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_1_0: Swift.Hashable, &#x3c4;_1_1: SwiftUI.View&gt;(for: &#x3c4;_1_0.Type, destination: (&#x3c4;_1_0) -&gt; &#x3c4;_1_1) -&gt; some&gt;&gt;.0&gt; in ListOfProducts.ProductsGridView.loadedView(products: Swift.Array&lt;ListOfProducts.Product&gt;) -&gt; some"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/ProductList/SubViews/ProductsGrid.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "54"
-                  endingLineNumber = "54">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -646,36 +514,6 @@
             endingLineNumber = "52"
             landmarkName = "loadedView(products:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "AB2A465C-F0E8-47C9-B17A-9EBC632BF30C - 34f3fd6316cfe898"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ListOfProducts.ProductsGridView.loadedView(products: Swift.Array&lt;ListOfProducts.Product&gt;) -&gt; some"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/ProductList/SubViews/ProductsGrid.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "52"
-                  endingLineNumber = "52">
-               </Location>
-               <Location
-                  uuid = "AB2A465C-F0E8-47C9-B17A-9EBC632BF30C - a9707bdc961b4b69"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; SwiftUI.ScrollView&lt;&lt;&lt;opaque return type of SwiftUI.View.navigationDestination&lt;&#x3c4;_0_0, &#x3c4;_0_1 where &#x3c4;_1_0: Swift.Hashable, &#x3c4;_1_1: SwiftUI.View&gt;(for: &#x3c4;_1_0.Type, destination: (&#x3c4;_1_0) -&gt; &#x3c4;_1_1) -&gt; some&gt;&gt;.0&gt; in ListOfProducts.ProductsGridView.loadedView(products: Swift.Array&lt;ListOfProducts.Product&gt;) -&gt; some"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/ProductList/SubViews/ProductsGrid.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "52"
-                  endingLineNumber = "52">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -740,64 +578,6 @@
             endingLineNumber = "104"
             landmarkName = "deleteProduct(productId:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "5FF56CDE-8C01-42E3-9372-266C3E43B16D - 24408c201d47af05"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 () async throws -&gt; ListOfProducts.Product in ListOfProducts.WishListView.deleteProduct(productId: Swift.String) -&gt; ()"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/WishList/WishListView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "104"
-                  endingLineNumber = "104">
-               </Location>
-               <Location
-                  uuid = "5FF56CDE-8C01-42E3-9372-266C3E43B16D - efe0b97de7b1c489"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for closure #1 () async throws -&gt; ListOfProducts.Product in ListOfProducts.WishListView.deleteProduct(productId: Swift.String) -&gt; ()"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/WishList/WishListView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "104"
-                  endingLineNumber = "104">
-               </Location>
-               <Location
-                  uuid = "5FF56CDE-8C01-42E3-9372-266C3E43B16D - b70faca69e64ed03"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 () async throws -&gt; ListOfProducts.Product in ListOfProducts.WishListView.deleteProduct(productId: Swift.String) -&gt; ()"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/WishList/WishListView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "104"
-                  endingLineNumber = "104">
-               </Location>
-               <Location
-                  uuid = "5FF56CDE-8C01-42E3-9372-266C3E43B16D - 7ea8dd67deeb8c02"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for closure #1 () async throws -&gt; ListOfProducts.Product in ListOfProducts.WishListView.deleteProduct(productId: Swift.String) -&gt; ()"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/WishList/WishListView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "104"
-                  endingLineNumber = "104">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -830,50 +610,6 @@
             endingLineNumber = "103"
             landmarkName = "deleteProduct(productId:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4F1B064C-3B74-43BD-B8E2-14E4D3D6FCAE - b500dde85e4757d8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ListOfProducts.WishListView.deleteProduct(productId: Swift.String) -&gt; ()"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/WishList/WishListView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103">
-               </Location>
-               <Location
-                  uuid = "4F1B064C-3B74-43BD-B8E2-14E4D3D6FCAE - 4868bb633ecb667c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () async throws -&gt; ListOfProducts.Product in ListOfProducts.WishListView.deleteProduct(productId: Swift.String) -&gt; ()"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/WishList/WishListView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103">
-               </Location>
-               <Location
-                  uuid = "4F1B064C-3B74-43BD-B8E2-14E4D3D6FCAE - 24408c201d47af24"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 () async throws -&gt; ListOfProducts.Product in ListOfProducts.WishListView.deleteProduct(productId: Swift.String) -&gt; ()"
-                  moduleName = "ListOfProducts.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nermeentomoum/Desktop/ListOfProducts/ListOfProducts/Sceens/WishList/WishListView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "103"
-                  endingLineNumber = "103">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
