@@ -52,11 +52,11 @@ private extension ProductsGridView {
         NavigationStack (path: $navigationPath) {
             ScrollView {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 100, maximum: .infinity)), count: 2), spacing: 8) {
-                    ForEach(products.indices, id: \.self) { index in
-                        ProductView(product: products[index],
-                                    isFavorite: products[index].isFavorite,
+                    ForEach(products) { product in
+                        ProductView(product: product,
+                                    isFavorite: product.isFavorite,
                                     onToggle: {
-                            deleteOrAddToProductFaviorates(productId: products[index].id, isFavorite: !products[index].isFavorite)
+                            deleteOrAddToProductFaviorates(productId: product.id, isFavorite: !product.isFavorite)
                         })
                     }
                 }
