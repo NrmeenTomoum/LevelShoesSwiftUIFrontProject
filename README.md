@@ -20,8 +20,10 @@ Business Logic Layer is represented by `ViewModels`.
 
 Data Access Layer is represented by `Repositories` .
 Repositories provide asynchronous API (Publisher from Combine) for making CRUD operations on the backend or a local database. They don't contain business logic, neither do they mutate the AppState. Repositories are accessible and used only by the ViewModels .
+### Home Screen Products Grid in 16 pro max
+<img width="481" alt="Screenshot 2025-05-08 at 8 30 32 AM" src="https://github.com/user-attachments/assets/1527daca-6f17-465c-bb7a-482fffd6e148" />
 
-### Home Screen Products Grid
+### Home Screen Products Grid in 16 
 <img width="504" alt="Screenshot 2025-05-07 at 8 54 12 PM" src="https://github.com/user-attachments/assets/60f75820-1e32-4f6e-894f-cd0bf0dc5c72" />
 
 
