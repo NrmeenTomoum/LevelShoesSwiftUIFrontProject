@@ -28,21 +28,29 @@ struct ProductListViewModel: ProductListViewModelProtocol {
     
     func fetchData( userId: String) async throws -> [Product] {
         do {
+            let cancelBag = CancelBag()
+
             // Fetch products and wishlist in parallel
+              appState[\.userData.products].setIsLoading(cancelBag: cancelBag)
+             appState[\.userData.WishListProducts].setIsLoading(cancelBag: cancelBag)
+
             async let productsFetch = self.fetchProducts(userId: userId)
             async let wishlistFetch = self.fetchWishListProducts(userId: userId)
             var (products, wishlistProducts) = try await (productsFetch, wishlistFetch)
+            
             for i in 0..<products.count {
                 products[i].isFavorite = wishlistProducts.contains(products[i])
             }
-            appState[\.userData.products] = .loaded(products)
+            
+
+            await appState[\.userData.products] = .loaded(products)
+            await  appState[\.userData.WishListProducts] = .loaded(wishlistProducts)
+
             return products
         } catch {
             throw ProductError.failedToLoadData
         }
     }
-    
-    
     
     func fetchProducts(userId: String) async throws -> [Product] {
         do {
@@ -53,7 +61,6 @@ struct ProductListViewModel: ProductListViewModelProtocol {
             throw ProductError.failedToLoadData
         }
     }
-    
     
     func fetchWishListProducts(userId: String) async throws -> [Product] {
         do {
@@ -83,6 +90,7 @@ struct ProductListViewModel: ProductListViewModelProtocol {
             throw ProductError.faiiledToDelete
         }
     }
+    
     func addProductToWishList(for userId: String, productId: String) async throws -> Product {
         do {
             let response = try await wishListRepository.addWishListProduct(for: userId,

@@ -7,19 +7,41 @@
 
 import SwiftUI
 
-struct AppState: Equatable {
+actor AppState {
     var userData = UserData()
 }
 
 extension AppState {
-    struct UserData: Equatable {
+    
+    actor UserData {
+        
         var products: Loadable<[Product]> = .notRequested
-        var WishListProducts: Loadable<[Product]> = .notRequested
+        private(set)  var WishListProducts: Loadable<[Product]> = .notRequested
+        
+        var isInWishlist: (Product) -> Bool {
+             return { product in
+                self.WishListProducts.value?.contains(where: { $0.id == product.id }) ?? false
+            }
+         }
+        
+        func removeFromWishList(_ product: Product) {
+            guard isInWishlist(product) else { return }
+            var updatedWishListProducts = self.WishListProducts.value ?? []
+            updatedWishListProducts.removeAll(where: { $0.id == product.id })
+            self.WishListProducts = .loaded(updatedWishListProducts)
+        }
+        
+        func addToWishList(_ product: Product) {
+            guard !isInWishlist(product) else { return }
+            var updatedWishListProducts = self.WishListProducts.value ?? []
+            updatedWishListProducts.append(product)
+            self.WishListProducts = .loaded(updatedWishListProducts)
+        }
+        
     }
 }
 
 struct DIContainer {
-    
     let appState: Store<AppState>
     let viewModels: ViewModels
 }

@@ -14,7 +14,8 @@ struct WishListView: View {
     @State var wishListproductsState: Loadable<[Product]>
     @State var deleteproductsState: Loadable<Product>
     @Environment(\.injected) private var injected: DIContainer
-    
+    @EnvironmentObject private var appState: AppDataState
+
     init(state: Loadable<[Product]> = .notRequested) {
         self._wishListproductsState = .init(initialValue: state)
         self._deleteproductsState = .init(initialValue: .notRequested)

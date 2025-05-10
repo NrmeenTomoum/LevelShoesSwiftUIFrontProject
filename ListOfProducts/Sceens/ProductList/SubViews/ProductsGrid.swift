@@ -19,7 +19,6 @@ struct ProductsGridView: View {
     @State private var selectedScreen: Screen?
     @State private var navigationPath = NavigationPath()
     
-    
     init(state: Loadable<[Product]> = .notRequested) {
         self._productsState = .init(initialValue: state)
         self._stateofProductChanged = .init(initialValue: .notRequested)
@@ -55,12 +54,11 @@ private extension ProductsGridView {
         NavigationStack (path: $navigationPath) {
             ScrollView {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 100)), count: 2), spacing: 8) {
-                    ForEach(products.indices, id: \.self) { index in
-                        ProductView(product: products[index],
-                                    isFavorite: products[index].isFavorite,
+                    ForEach(products) { product in
+                        ProductView(product: product,
                                     onToggle: {
-                            deleteOrAddToProductFaviorates(productId: products[index].id,
-                                                           isFavorite: !products[index].isFavorite)
+                            deleteOrAddToProductFaviorates(productId: product.id,
+                                                           isFavorite: !product.isFavorite)
                         })
                     }
                 }
@@ -80,15 +78,9 @@ private extension ProductsGridView {
                     switch screen {
                     case .wishList:
                         WishListView()
-                            .onDisappear {
-                                loadProductsList(forceReload: false)
-                            }
                     }
                 }
             }
-        }
-        .onReceive(productsUpdate) { update in
-            self.productsUpdtaesInfo = update
         }
         
     }
@@ -131,10 +123,6 @@ private extension ProductsGridView {
             try await  injected.viewModels.productViewModel.onToggle(userId: "68150b6a29021b5984886601",
                                                                      productId: productId, isFavorite: isFavorite)
         }
-    }
-    
-    var productsUpdate: AnyPublisher<Loadable<[Product]>, Never> {
-        injected.appState.updates(for: \.userData.products)
     }
     
 }
