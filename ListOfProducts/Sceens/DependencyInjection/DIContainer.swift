@@ -27,7 +27,6 @@ class AppState{
         }
     }
     
-
     func setproducts(_ products: [Product]) async {
         await store.setProducts(products)
         await refreshProducts()
@@ -53,13 +52,11 @@ class AppState{
     func removeFromWishlist(product: Product) async {
         await store.removeFromWishlist(product)
         await refreshWishlistState()
-        await refreshProducts()
     }
     
     func addToWishlist(product: Product) async {
         await store.addToWishlist(product)
         await refreshWishlistState()
-        await refreshProducts()
     }
 }
 
@@ -88,9 +85,7 @@ extension AppState {
         }
         
         func appendproducts(_ products: [Product]) {
-            var updatedproducts = self.products
-            updatedproducts.append(contentsOf: products)
-            self.products = updatedproducts
+            self.products.append(contentsOf: products)
         }
         
         
@@ -99,16 +94,12 @@ extension AppState {
         }
         
         func appendWishListProducts(_ products: [Product]) {
-            var updatedWishListProducts = self.wishlist
-            updatedWishListProducts.append(contentsOf: products)
-            self.wishlist = updatedWishListProducts
+            self.wishlist.append(contentsOf: products)
         }
         
         func removeFromWishlist(_ product: Product) {
             guard isInWishlist(product) else { return }
-            var updatedWishListProducts = self.wishlist
-            updatedWishListProducts.removeAll(where: { $0.id == product.id })
-            self.wishlist = updatedWishListProducts
+            self.wishlist.removeAll(where: { $0.id == product.id })
         }
         
         func addToWishlist(_ product: Product) {
