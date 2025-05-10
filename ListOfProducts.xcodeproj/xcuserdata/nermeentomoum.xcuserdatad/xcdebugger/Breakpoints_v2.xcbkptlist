@@ -462,10 +462,10 @@
             filePath = "ListOfProducts/Sceens/ProductList/SubViews/ProductsGrid.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "loadedView(products:)"
-            landmarkType = "7">
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "ProductsGridView"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -478,9 +478,9 @@
             filePath = "ListOfProducts/Sceens/ProductList/SubViews/ProductsGrid.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "loadingView()"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "defaultView()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -494,8 +494,8 @@
             filePath = "ListOfProducts/Sceens/ProductList/SubViews/ProductsGrid.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "content"
             landmarkType = "24">
          </BreakpointContent>
@@ -510,10 +510,10 @@
             filePath = "ListOfProducts/Sceens/ProductList/SubViews/ProductsGrid.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "loadedView(products:)"
-            landmarkType = "7">
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -526,8 +526,8 @@
             filePath = "ListOfProducts/Sceens/ProductList/SubViews/ProductsGrid.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "content"
             landmarkType = "24">
          </BreakpointContent>
@@ -542,8 +542,8 @@
             filePath = "ListOfProducts/Sceens/ProductList/SubViews/ProductsGrid.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "content"
             landmarkType = "24">
          </BreakpointContent>
@@ -558,10 +558,10 @@
             filePath = "ListOfProducts/Sceens/ProductList/SubViews/ProductsGrid.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "content"
-            landmarkType = "24">
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "ProductsGridView"
+            landmarkType = "14">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -574,8 +574,8 @@
             filePath = "ListOfProducts/Sceens/WishList/WishListView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "deleteProduct(productId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -584,6 +584,22 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1DC1866C-C344-4163-9C02-8E898154E488"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ListOfProducts/Sceens/WishList/WishListView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "WishListView"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4F1B064C-3B74-43BD-B8E2-14E4D3D6FCAE"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -599,7 +615,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4F1B064C-3B74-43BD-B8E2-14E4D3D6FCAE"
+            uuid = "BCAD2123-E22D-406B-8871-B02221D608B1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -608,22 +624,6 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "105"
             endingLineNumber = "105"
-            landmarkName = "deleteProduct(productId:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BCAD2123-E22D-406B-8871-B02221D608B1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ListOfProducts/Sceens/WishList/WishListView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
             landmarkName = "deleteProduct(productId:)"
             landmarkType = "7">
          </BreakpointContent>

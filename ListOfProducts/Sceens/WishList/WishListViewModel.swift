@@ -13,18 +13,21 @@ protocol WishListViewModelProtocol {
     func fetchWishListProducts(products:[Product],  userId: String) async throws -> [Product]
 }
 
-class WishListViewModel: WishListViewModelProtocol {
-
-    @ObservationIgnored let repository: WishListRepositoryProtocol
+struct WishListViewModel: WishListViewModelProtocol {
     
-    init( repository: WishListRepositoryProtocol) {
+    let repository: WishListRepositoryProtocol
+    let appState: AppState
+    
+    init( repository: WishListRepositoryProtocol, appState: AppState) {
         self.repository = repository
+        self.appState = appState
     }
     
     func fetchWishListProducts(products:[Product],  userId: String) async throws -> [Product] {
         
         do {
             let response = try await repository.getWishListProducts(for: userId)
+            await  appState.setWishlist(response.data)
             return response.data
         } catch {
             print("Failed to request products")
@@ -35,12 +38,12 @@ class WishListViewModel: WishListViewModelProtocol {
     func deleteProduct(for userId: String, productId: String) async throws -> Product {
         do {
             let response = try await repository.deleteWishListProduct(for: userId, productID: productId)
+            await  appState.removeFromWishlist(product: response.data)
             return response.data
         } catch {
             throw WishListError.failedToDeleteProduct
         }
     }
-    
 }
 
 enum WishListError: Error {
@@ -64,7 +67,6 @@ struct StubWishListViewModel: WishListViewModelProtocol {
         throw ValueIsMissingError()
     }
     
-    var isLoading: Bool
     func deleteProduct(for userId: String, productId: String) async throws -> Product {
         throw ValueIsMissingError()
     }

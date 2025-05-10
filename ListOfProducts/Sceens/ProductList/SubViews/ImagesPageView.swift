@@ -23,7 +23,7 @@ struct ImagesPageView: View {
             case .success(let image):
                 image
                     .resizable()
-                   .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fit)
             case .failure:
                 Color.gray.opacity(0.1)
                     .frame(height: 250)

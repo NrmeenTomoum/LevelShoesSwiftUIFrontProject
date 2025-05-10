@@ -11,12 +11,12 @@ import SwiftUI
 typealias LoadableSubject<T> = Binding<Loadable<T>>
 
 enum Loadable<T> {
-
+    
     case notRequested
     case isLoading(last: T?, cancelBag: CancelBag)
     case loaded(T)
     case failed(Error)
-
+    
     var value: T? {
         switch self {
         case let .loaded(value): return value
@@ -92,6 +92,7 @@ extension Loadable where T: SomeOptional {
 }
 
 extension Loadable: Equatable where T: Equatable {
+    
     static func == (lhs: Loadable<T>, rhs: Loadable<T>) -> Bool {
         switch (lhs, rhs) {
         case (.notRequested, .notRequested): return true
@@ -103,6 +104,7 @@ extension Loadable: Equatable where T: Equatable {
         default: return false
         }
     }
+    
 }
 
 extension LoadableSubject {

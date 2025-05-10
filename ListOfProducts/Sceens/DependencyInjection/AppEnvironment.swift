@@ -15,20 +15,21 @@ struct AppEnvironment {
 extension AppEnvironment {
     
     static func bootstrap() -> AppEnvironment {
+        let appState = AppState()
         let session = configuredURLSession()
         let repositories = configuredWebRepositories(session: session)
-        let viewModels = configuredViewModels(repositories: repositories)
-        return AppEnvironment(diContainer: .init(viewModels: viewModels))
+        let viewModels = configuredViewModels(repositories: repositories, appState: appState)
+        return AppEnvironment(diContainer: .init(appState: appState, viewModels: viewModels) )
     }
     
     private static func configuredURLSession() -> URLSessionProtocol {
         let configuration = URLSessionConfiguration.default
-//        configuration.timeoutIntervalForRequest = 60
-//        configuration.timeoutIntervalForResource = 120
-//        configuration.waitsForConnectivity = true
-//        configuration.httpMaximumConnectionsPerHost = 5
-//        configuration.requestCachePolicy = .returnCacheDataElseLoad
-//        configuration.urlCache = .shared
+        //        configuration.timeoutIntervalForRequest = 60
+        //        configuration.timeoutIntervalForResource = 120
+        //        configuration.waitsForConnectivity = true
+        //        configuration.httpMaximumConnectionsPerHost = 5
+        //        configuration.requestCachePolicy = .returnCacheDataElseLoad
+        //        configuration.urlCache = .shared
         return URLSession(configuration: configuration)
     }
     
@@ -40,11 +41,10 @@ extension AppEnvironment {
     }
     
     private static func configuredViewModels(
-        repositories: DIContainer.Repositories ) -> DIContainer.ViewModels {
+        repositories: DIContainer.Repositories, appState: AppState) -> DIContainer.ViewModels {
             let productListViewModel = ProductListViewModel(
-                productRepository: repositories.productRepository, wishListRepository: repositories.wishListRepository
-            )
-            let wishListViewModel = WishListViewModel(repository: repositories.wishListRepository)
+                productRepository: repositories.productRepository, wishListRepository: repositories.wishListRepository, appState: appState)
+            let wishListViewModel = WishListViewModel(repository: repositories.wishListRepository, appState: appState)
             return .init(productViewModel: productListViewModel, wishListViewModel: wishListViewModel)
         }
     

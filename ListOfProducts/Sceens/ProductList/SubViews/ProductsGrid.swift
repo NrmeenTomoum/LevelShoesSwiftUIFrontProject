@@ -5,21 +5,24 @@
 //  Created by Nermeen Tomoum on 03/05/2025.
 //
 import SwiftUI
+import Combine
 
 struct ProductsGridView: View {
     @EnvironmentObject var user: User
     @Environment(\.injected) private var injected: DIContainer
     @State var products: [Product] = []
+    @State var productsUpdtaesInfo:  Loadable<[Product]>
+
     @State private(set) var productsState: Loadable<[Product]>
     @State private(set) var stateofProductChanged: Loadable<Product>
     
     @State private var selectedScreen: Screen?
     @State private var navigationPath = NavigationPath()
     
-    
     init(state: Loadable<[Product]> = .notRequested) {
         self._productsState = .init(initialValue: state)
         self._stateofProductChanged = .init(initialValue: .notRequested)
+        self._productsUpdtaesInfo = .init(initialValue: .notRequested)
     }
     
     var body: some View {
@@ -41,7 +44,6 @@ struct ProductsGridView: View {
     
 }
 
-
 #Preview {
     ProductsGridView()
 }
@@ -51,12 +53,12 @@ private extension ProductsGridView {
     func loadedView( products: [Product]) -> some View {
         NavigationStack (path: $navigationPath) {
             ScrollView {
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 100, maximum: .infinity)), count: 2), spacing: 8) {
-                    ForEach(products) { product in
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 100)), count: 2), spacing: 8) {
+                    ForEach(injected.appState.products) { product in
                         ProductView(product: product,
-                                    isFavorite: product.isFavorite,
                                     onToggle: {
-                            deleteOrAddToProductFaviorates(productId: product.id, isFavorite: !product.isFavorite)
+                            deleteOrAddToProductFaviorates(productId: product.id,
+                                                           isFavorite: !injected.appState.isInWishlist(product))
                         })
                     }
                 }
@@ -76,13 +78,11 @@ private extension ProductsGridView {
                     switch screen {
                     case .wishList:
                         WishListView()
-                            .onDisappear {
-                                loadProductsList(forceReload: false)
-                            }
                     }
                 }
             }
         }
+        
     }
     
     func defaultView() -> some View {
@@ -114,13 +114,14 @@ private extension ProductsGridView {
     private func loadProductsList(forceReload: Bool) {
         guard forceReload || products.isEmpty else { return }
         $productsState.load {
-            try await  injected.viewModels.productViewModel.fetchData(products: products, userId: "68150b6a29021b5984886601")
+            try await  injected.viewModels.productViewModel.fetchData( userId: "68150b6a29021b5984886601")
         }
     }
     
     private func deleteOrAddToProductFaviorates(productId: String, isFavorite: Bool) {
         $stateofProductChanged.load {
-            try await  injected.viewModels.productViewModel.onToggle(userId: "68150b6a29021b5984886601", productId: productId, isFavorite: isFavorite)
+            try await  injected.viewModels.productViewModel.onToggle(userId: "68150b6a29021b5984886601",
+                                                                     productId: productId, isFavorite: isFavorite)
         }
     }
     

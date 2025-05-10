@@ -10,35 +10,41 @@ import Observation
 
 protocol ProductListViewModelProtocol {
     
-    func fetchData(products:[Product], userId: String) async throws -> [Product]
+    func fetchData(userId: String) async throws -> [Product]
     func onToggle(userId: String, productId: String, isFavorite: Bool) async throws -> Product
 }
 
-class ProductListViewModel: ProductListViewModelProtocol {
-    @ObservationIgnored let wishListRepository: WishListRepositoryProtocol
-    @ObservationIgnored let  productRepository: ProductRepositoryProtocol
+struct ProductListViewModel: ProductListViewModelProtocol {
+    let wishListRepository: WishListRepositoryProtocol
+    let  productRepository: ProductRepositoryProtocol
+    let appState: AppState
     
-    init( productRepository: ProductRepositoryProtocol, wishListRepository: WishListRepositoryProtocol) {
+    init( productRepository: ProductRepositoryProtocol, wishListRepository: WishListRepositoryProtocol,
+          appState: AppState) {
         self.productRepository = productRepository
         self.wishListRepository = wishListRepository
+        self.appState = appState
     }
     
-    func fetchData(products:[Product], userId: String) async throws -> [Product] {
+    func fetchData( userId: String) async throws -> [Product] {
         do {
-            // Fetch products and wishlist in parallel
+            let cancelBag = CancelBag()
+
             async let productsFetch = self.fetchProducts(userId: userId)
             async let wishlistFetch = self.fetchWishListProducts(userId: userId)
             var (products, wishlistProducts) = try await (productsFetch, wishlistFetch)
+            
             for i in 0..<products.count {
                 products[i].isFavorite = wishlistProducts.contains(products[i])
             }
+            await  appState.setproducts(products)
+            await  appState.setWishlist(wishlistProducts)
+            
             return products
         } catch {
             throw ProductError.failedToLoadData
         }
     }
-    
-    
     
     func fetchProducts(userId: String) async throws -> [Product] {
         do {
@@ -49,7 +55,6 @@ class ProductListViewModel: ProductListViewModelProtocol {
             throw ProductError.failedToLoadData
         }
     }
-    
     
     func fetchWishListProducts(userId: String) async throws -> [Product] {
         do {
@@ -72,15 +77,20 @@ class ProductListViewModel: ProductListViewModelProtocol {
     
     func deleteProductFromWishList(for userId: String, productId: String) async throws -> Product {
         do{
-            let response = try await wishListRepository.deleteWishListProduct(for: userId, productID: productId)
+            let response = try await wishListRepository.deleteWishListProduct(for: userId,
+                                                                              productID: productId)
+            await  appState.removeFromWishlist(product: response.data)
             return response.data
         } catch {
             throw ProductError.faiiledToDelete
         }
     }
+    
     func addProductToWishList(for userId: String, productId: String) async throws -> Product {
         do {
-            let response = try await wishListRepository.addWishListProduct(for: userId, productID: productId)
+            let response = try await wishListRepository.addWishListProduct(for: userId,
+                                                                           productID: productId)
+            await appState.addToWishlist(product: response.data)
             return response.data
         } catch {
             throw ProductError.failedToAdd
@@ -112,14 +122,13 @@ extension ProductError: LocalizedError {
 
 
 struct StubProductListViewModel: ProductListViewModelProtocol {
+    func fetchData(userId: String) async throws -> [Product] {
+        throw ValueIsMissingError()
+    }
+    
     func onToggle(userId: String, productId: String, isFavorite: Bool) async throws -> Product {
         throw ValueIsMissingError()
     }
-    
-    func fetchData(products:[Product], userId: String) async throws -> [Product] {
-        throw ValueIsMissingError()
-    }
-    
 }
 
 struct ValueIsMissingError: Error {

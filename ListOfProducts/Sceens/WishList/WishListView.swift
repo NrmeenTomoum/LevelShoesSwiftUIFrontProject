@@ -14,7 +14,7 @@ struct WishListView: View {
     @State var wishListproductsState: Loadable<[Product]>
     @State var deleteproductsState: Loadable<Product>
     @Environment(\.injected) private var injected: DIContainer
-    
+
     init(state: Loadable<[Product]> = .notRequested) {
         self._wishListproductsState = .init(initialValue: state)
         self._deleteproductsState = .init(initialValue: .notRequested)
@@ -41,11 +41,11 @@ private extension WishListView {
     @ViewBuilder
     func loadedView(wishListproducts: [Product]) -> some View {
         List {
-            ForEach(wishListproducts) { wishListproduct in
+            ForEach(injected.appState.wishlist) { wishListproduct in
                 WishListProduct(product: wishListproduct)
             }.onDelete { indexSet in
                 if let index = indexSet.first {
-                    deleteProduct(productId: wishListproducts[index].id)
+                    deleteProduct(productId: injected.appState.wishlist[index].id)
                 }
             }
             .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
@@ -53,7 +53,7 @@ private extension WishListView {
         }
         .listStyle(.plain)
         .navigationBarBackButtonHidden()
-        .navigationTitle(Text("Wishlist ( \(wishListproducts.count) )"))
+        .navigationTitle(Text("Wishlist ( \(injected.appState.wishlist.count) )"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -95,17 +95,19 @@ private extension WishListView {
     private func loadProductsList(forceReload: Bool) {
         guard forceReload || wishListproducts.isEmpty else { return }
         $wishListproductsState.load {
-            try await  injected.viewModels.wishListViewModel.fetchWishListProducts(products: wishListproducts, userId: "68150b6a29021b5984886601")
+            try await  injected.viewModels.wishListViewModel.fetchWishListProducts(products: wishListproducts,
+                                                                                   userId: "68150b6a29021b5984886601")
         }
     }
     
     private func deleteProduct( productId: String) {
         $deleteproductsState.load {
-            try await  injected.viewModels.wishListViewModel.deleteProduct(for: "68150b6a29021b5984886601", productId: productId)
+            try await  injected.viewModels.wishListViewModel.deleteProduct(for: "68150b6a29021b5984886601",
+                                                                           productId: productId)
         }
     }
 }
 
 #Preview {
-       WishListView()
+    WishListView()
 }

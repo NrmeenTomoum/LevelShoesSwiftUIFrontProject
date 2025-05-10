@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ProductView: View {
+    @Environment(\.injected) private var injected: DIContainer
     var product: Product
-    @State var isFavorite: Bool = false
     let onToggle: () -> Void
     var body: some View {
         VStack(alignment: .leading, spacing: 8){
@@ -18,10 +18,9 @@ struct ProductView: View {
                     HStack {
                         Spacer()
                         Button(action: {
-                            isFavorite.toggle()
                             onToggle()
                         }) {
-                            Image(systemName: isFavorite ? "heart.fill": "heart")
+                            Image(systemName: injected.appState.isInWishlist(product) ? "heart.fill": "heart")
                                 .resizable()
                                 .foregroundColor(.black)
                                 .frame(width: 20, height: 20)

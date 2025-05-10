@@ -10,15 +10,15 @@ protocol ProductRepositoryProtocol: NetworkProtocol {
     func getProducts() async throws -> ApiResponse<[Product]>
 }
 
-class ProductRepository: ProductRepositoryProtocol {
+struct ProductRepository: ProductRepositoryProtocol {
     
     let session: URLSessionProtocol
-
+    
     init(session: URLSessionProtocol) {
         self.session = session
     }
     
     func getProducts() async throws -> ApiResponse<[Product]> {
-        return try await request(ProductEndpoint.products,session: session)
+        return try await request(ProductEndpoint.products, session: session)
     }
 }
