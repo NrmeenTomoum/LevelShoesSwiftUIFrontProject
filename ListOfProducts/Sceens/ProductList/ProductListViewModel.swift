@@ -19,7 +19,8 @@ struct ProductListViewModel: ProductListViewModelProtocol {
     let  productRepository: ProductRepositoryProtocol
     let appState: Store<AppState>
     
-    init( productRepository: ProductRepositoryProtocol, wishListRepository: WishListRepositoryProtocol, appState: Store<AppState>) {
+    init( productRepository: ProductRepositoryProtocol, wishListRepository: WishListRepositoryProtocol,
+          appState: Store<AppState>) {
         self.productRepository = productRepository
         self.wishListRepository = wishListRepository
         self.appState = appState
@@ -75,7 +76,8 @@ struct ProductListViewModel: ProductListViewModelProtocol {
     
     func deleteProductFromWishList(for userId: String, productId: String) async throws -> Product {
         do{
-            let response = try await wishListRepository.deleteWishListProduct(for: userId, productID: productId)
+            let response = try await wishListRepository.deleteWishListProduct(for: userId,
+                                                                              productID: productId)
             return response.data
         } catch {
             throw ProductError.faiiledToDelete
@@ -83,7 +85,8 @@ struct ProductListViewModel: ProductListViewModelProtocol {
     }
     func addProductToWishList(for userId: String, productId: String) async throws -> Product {
         do {
-            let response = try await wishListRepository.addWishListProduct(for: userId, productID: productId)
+            let response = try await wishListRepository.addWishListProduct(for: userId,
+                                                                           productID: productId)
             return response.data
         } catch {
             throw ProductError.failedToAdd

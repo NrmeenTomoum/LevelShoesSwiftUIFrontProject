@@ -59,7 +59,8 @@ private extension ProductsGridView {
                         ProductView(product: products[index],
                                     isFavorite: products[index].isFavorite,
                                     onToggle: {
-                            deleteOrAddToProductFaviorates(productId: products[index].id, isFavorite: !products[index].isFavorite)
+                            deleteOrAddToProductFaviorates(productId: products[index].id,
+                                                           isFavorite: !products[index].isFavorite)
                         })
                     }
                 }
@@ -127,7 +128,8 @@ private extension ProductsGridView {
     
     private func deleteOrAddToProductFaviorates(productId: String, isFavorite: Bool) {
         $stateofProductChanged.load {
-            try await  injected.viewModels.productViewModel.onToggle(userId: "68150b6a29021b5984886601", productId: productId, isFavorite: isFavorite)
+            try await  injected.viewModels.productViewModel.onToggle(userId: "68150b6a29021b5984886601",
+                                                                     productId: productId, isFavorite: isFavorite)
         }
     }
     

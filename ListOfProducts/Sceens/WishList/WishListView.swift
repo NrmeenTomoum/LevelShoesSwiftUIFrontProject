@@ -95,17 +95,19 @@ private extension WishListView {
     private func loadProductsList(forceReload: Bool) {
         guard forceReload || wishListproducts.isEmpty else { return }
         $wishListproductsState.load {
-            try await  injected.viewModels.wishListViewModel.fetchWishListProducts(products: wishListproducts, userId: "68150b6a29021b5984886601")
+            try await  injected.viewModels.wishListViewModel.fetchWishListProducts(products: wishListproducts,
+                                                                                   userId: "68150b6a29021b5984886601")
         }
     }
     
     private func deleteProduct( productId: String) {
         $deleteproductsState.load {
-            try await  injected.viewModels.wishListViewModel.deleteProduct(for: "68150b6a29021b5984886601", productId: productId)
+            try await  injected.viewModels.wishListViewModel.deleteProduct(for: "68150b6a29021b5984886601",
+                                                                           productId: productId)
         }
     }
 }
 
 #Preview {
-       WishListView()
+    WishListView()
 }

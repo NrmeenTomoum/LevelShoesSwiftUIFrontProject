@@ -19,6 +19,6 @@ struct ProductRepository: ProductRepositoryProtocol {
     }
     
     func getProducts() async throws -> ApiResponse<[Product]> {
-        return try await request(ProductEndpoint.products,session: session)
+        return try await request(ProductEndpoint.products, session: session)
     }
 }

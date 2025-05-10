@@ -11,12 +11,12 @@ import SwiftUI
 typealias LoadableSubject<T> = Binding<Loadable<T>>
 
 enum Loadable<T> {
-
+    
     case notRequested
     case isLoading(last: T?, cancelBag: CancelBag)
     case loaded(T)
     case failed(Error)
-
+    
     var value: T? {
         switch self {
         case let .loaded(value): return value

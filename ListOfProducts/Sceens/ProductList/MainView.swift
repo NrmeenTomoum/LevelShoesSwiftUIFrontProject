@@ -38,7 +38,7 @@ struct MainView: View {
                     Image(systemName: "person")
                     Text("Profile")
                 }.tag(3)
-                
+            
             
             // Cart Tab with Badge
             CartView()
