@@ -1,7 +1,9 @@
 #Demo of the Task
 
 
-Uploading demo.mov…
+
+https://github.com/user-attachments/assets/ace11c55-6bfe-473d-aa04-7b911aa5ca27
+
 
 
 # Clean Architecture for SwiftUI + Combine
