@@ -21,9 +21,13 @@ class AppState{
     }
     
     func refreshProducts() async {
-        self.products = await store.loadProducts()
+        let products = await store.loadProducts()
+        await MainActor.run {
+            self.products = products
+        }
     }
     
+
     func setproducts(_ products: [Product]) async {
         await store.setProducts(products)
         await refreshProducts()
@@ -40,7 +44,10 @@ class AppState{
     }
     
     func refreshWishlistState() async {
-        self.wishlist = await store.wishlist
+        let wishlist = await store.wishlist
+        await MainActor.run {
+            self.wishlist = wishlist
+        }
     }
     
     func removeFromWishlist(product: Product) async {
