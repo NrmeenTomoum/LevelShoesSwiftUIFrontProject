@@ -18,7 +18,7 @@ struct ProductListViewModel: ProductListViewModelProtocol {
     let wishListRepository: WishListRepositoryProtocol
     let  productRepository: ProductRepositoryProtocol
     let appState: Store<AppState>
-
+    
     init( productRepository: ProductRepositoryProtocol, wishListRepository: WishListRepositoryProtocol, appState: Store<AppState>) {
         self.productRepository = productRepository
         self.wishListRepository = wishListRepository

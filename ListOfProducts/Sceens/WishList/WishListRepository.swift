@@ -12,9 +12,9 @@ protocol WishListRepositoryProtocol : NetworkProtocol {
     func addWishListProduct(for userID: String, productID: String) async throws -> ApiResponse<Product>
 }
 
-class WishListRepository: WishListRepositoryProtocol {
+struct WishListRepository: WishListRepositoryProtocol {
     let session: URLSessionProtocol
-
+    
     init(session: URLSessionProtocol) {
         self.session = session
     }

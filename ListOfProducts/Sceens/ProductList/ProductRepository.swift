@@ -10,10 +10,10 @@ protocol ProductRepositoryProtocol: NetworkProtocol {
     func getProducts() async throws -> ApiResponse<[Product]>
 }
 
-class ProductRepository: ProductRepositoryProtocol {
+struct ProductRepository: ProductRepositoryProtocol {
     
     let session: URLSessionProtocol
-
+    
     init(session: URLSessionProtocol) {
         self.session = session
     }

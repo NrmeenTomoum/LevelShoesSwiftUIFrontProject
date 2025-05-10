@@ -14,10 +14,10 @@ protocol WishListViewModelProtocol {
 }
 
 struct WishListViewModel: WishListViewModelProtocol {
-
+    
     let repository: WishListRepositoryProtocol
     let appState: Store<AppState>
-
+    
     init( repository: WishListRepositoryProtocol, appState: Store<AppState>) {
         self.repository = repository
         self.appState = appState
