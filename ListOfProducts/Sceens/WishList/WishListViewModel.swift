@@ -44,7 +44,6 @@ struct WishListViewModel: WishListViewModelProtocol {
             throw WishListError.failedToDeleteProduct
         }
     }
-    
 }
 
 enum WishListError: Error {

@@ -58,7 +58,7 @@ private extension ProductsGridView {
                         ProductView(product: product,
                                     onToggle: {
                             deleteOrAddToProductFaviorates(productId: product.id,
-                                                           isFavorite: !product.isFavorite)
+                                                           isFavorite: !injected.appState.isInWishlist(product))
                         })
                     }
                 }

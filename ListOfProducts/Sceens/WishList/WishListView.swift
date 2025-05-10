@@ -41,11 +41,11 @@ private extension WishListView {
     @ViewBuilder
     func loadedView(wishListproducts: [Product]) -> some View {
         List {
-            ForEach(wishListproducts) { wishListproduct in
+            ForEach(injected.appState.wishlist) { wishListproduct in
                 WishListProduct(product: wishListproduct)
             }.onDelete { indexSet in
                 if let index = indexSet.first {
-                    deleteProduct(productId: wishListproducts[index].id)
+                    deleteProduct(productId: injected.appState.wishlist[index].id)
                 }
             }
             .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 0))
@@ -53,7 +53,7 @@ private extension WishListView {
         }
         .listStyle(.plain)
         .navigationBarBackButtonHidden()
-        .navigationTitle(Text("Wishlist ( \(wishListproducts.count) )"))
+        .navigationTitle(Text("Wishlist ( \(injected.appState.wishlist.count) )"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
