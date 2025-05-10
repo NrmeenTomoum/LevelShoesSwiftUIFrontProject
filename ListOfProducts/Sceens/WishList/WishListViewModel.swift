@@ -13,9 +13,9 @@ protocol WishListViewModelProtocol {
     func fetchWishListProducts(products:[Product],  userId: String) async throws -> [Product]
 }
 
-class WishListViewModel: WishListViewModelProtocol {
+struct WishListViewModel: WishListViewModelProtocol {
 
-    @ObservationIgnored let repository: WishListRepositoryProtocol
+    let repository: WishListRepositoryProtocol
     let appState: Store<AppState>
 
     init( repository: WishListRepositoryProtocol, appState: Store<AppState>) {

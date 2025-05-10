@@ -92,6 +92,7 @@ extension Loadable where T: SomeOptional {
 }
 
 extension Loadable: Equatable where T: Equatable {
+    
     static func == (lhs: Loadable<T>, rhs: Loadable<T>) -> Bool {
         switch (lhs, rhs) {
         case (.notRequested, .notRequested): return true
@@ -103,6 +104,7 @@ extension Loadable: Equatable where T: Equatable {
         default: return false
         }
     }
+    
 }
 
 extension LoadableSubject {

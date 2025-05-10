@@ -45,7 +45,6 @@ struct ProductsGridView: View {
     
 }
 
-
 #Preview {
     ProductsGridView()
 }
@@ -55,7 +54,7 @@ private extension ProductsGridView {
     func loadedView( products: [Product]) -> some View {
         NavigationStack (path: $navigationPath) {
             ScrollView {
-                LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 100)), count: 2), spacing: 8) {
+                LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 100)), count: 2), spacing: 8) {
                     ForEach(products.indices, id: \.self) { index in
                         ProductView(product: products[index],
                                     isFavorite: products[index].isFavorite,

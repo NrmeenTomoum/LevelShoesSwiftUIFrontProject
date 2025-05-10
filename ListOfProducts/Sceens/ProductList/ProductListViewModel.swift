@@ -14,9 +14,9 @@ protocol ProductListViewModelProtocol {
     func onToggle(userId: String, productId: String, isFavorite: Bool) async throws -> Product
 }
 
-class ProductListViewModel: ProductListViewModelProtocol {
-    @ObservationIgnored let wishListRepository: WishListRepositoryProtocol
-    @ObservationIgnored let  productRepository: ProductRepositoryProtocol
+struct ProductListViewModel: ProductListViewModelProtocol {
+    let wishListRepository: WishListRepositoryProtocol
+    let  productRepository: ProductRepositoryProtocol
     let appState: Store<AppState>
 
     init( productRepository: ProductRepositoryProtocol, wishListRepository: WishListRepositoryProtocol, appState: Store<AppState>) {
