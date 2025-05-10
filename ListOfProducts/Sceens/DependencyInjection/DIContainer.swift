@@ -6,43 +6,130 @@
 //
 
 import SwiftUI
+import Combine
 
-actor AppState {
-    var userData = UserData()
+@Observable
+class AppState{
+    
+    private(set) var products: [Product] = []
+    private(set) var wishlist: [Product] = []
+    
+    private let store: UserData
+    
+    init(store: AppState.UserData = UserData()) {
+        self.store = store
+    }
+    
+    func refreshProducts() async {
+        self.products = await store.loadProducts()
+    }
+    
+    func setproducts(_ products: [Product]) async {
+        await store.setProducts(products)
+        await refreshProducts()
+    }
+    
+    func setWishlist(_ wishlist: [Product]) async {
+        await store.setWishListProducts(wishlist)
+        await refreshWishlistState()
+    }
+    
+    
+    func isInWishlist(_ product: Product)  -> Bool {
+        return wishlist.contains(product)
+    }
+    
+    func refreshWishlistState() async {
+        self.wishlist = await store.wishlist
+    }
+    
+    func toggleWishlist(product: Product) async {
+        await store.toggleWishlist(product)
+        await refreshWishlistState()
+        await refreshProducts()
+        
+    }
+    
+    func removeFromWishlist(product: Product) async {
+        await store.removeFromWishlist(product)
+        await refreshWishlistState()
+        await refreshProducts()
+    }
+    func addToWishlist(product: Product) async {
+        await store.addToWishlist(product)
+        await refreshWishlistState()
+        await refreshProducts()
+    }
 }
 
 extension AppState {
     
     actor UserData {
         
-        var products: Loadable<[Product]> = .notRequested
-        private(set)  var WishListProducts: Loadable<[Product]> = .notRequested
+        private(set) var products:[Product]  = []
+        private(set)  var wishlist: [Product] = []
         
         var isInWishlist: (Product) -> Bool {
-             return { product in
-                self.WishListProducts.value?.contains(where: { $0.id == product.id }) ?? false
+            return { product in
+                self.wishlist.contains(where: { $0.id == product.id })
             }
-         }
-        
-        func removeFromWishList(_ product: Product) {
-            guard isInWishlist(product) else { return }
-            var updatedWishListProducts = self.WishListProducts.value ?? []
-            updatedWishListProducts.removeAll(where: { $0.id == product.id })
-            self.WishListProducts = .loaded(updatedWishListProducts)
         }
         
-        func addToWishList(_ product: Product) {
+        func loadProducts() -> [Product] {
+            return self.products
+        }
+        func getWishListProducts() -> [Product] {
+            return self.wishlist
+        }
+        
+        func setProducts(_ products: [Product]) {
+            self.products = products
+        }
+        
+        func appendproducts(_ products: [Product]) {
+            var updatedproducts = self.products
+            updatedproducts.append(contentsOf: products)
+            self.products = updatedproducts
+        }
+        
+        
+        func setWishListProducts(_ products: [Product]) {
+            self.wishlist = products
+        }
+        
+        func appendWishListProducts(_ products: [Product]) {
+            var updatedWishListProducts = self.wishlist
+            updatedWishListProducts.append(contentsOf: products)
+            self.wishlist = updatedWishListProducts
+        }
+        
+        func toggleWishlist(_ product: Product) {
+            if isInWishlist(product) {
+                removeFromWishlist(product)
+            } else {
+                addToWishlist(product)
+            }
+        }
+        
+        func removeFromWishlist(_ product: Product) {
+            guard isInWishlist(product) else { return }
+            var updatedWishListProducts = self.wishlist
+            updatedWishListProducts.removeAll(where: { $0.id == product.id })
+            self.wishlist = updatedWishListProducts
+        }
+        
+        func addToWishlist(_ product: Product) {
             guard !isInWishlist(product) else { return }
-            var updatedWishListProducts = self.WishListProducts.value ?? []
+            var updatedWishListProducts = self.wishlist
             updatedWishListProducts.append(product)
-            self.WishListProducts = .loaded(updatedWishListProducts)
+            self.wishlist = updatedWishListProducts
         }
         
     }
 }
 
 struct DIContainer {
-    let appState: Store<AppState>
+    let appState: AppState
     let viewModels: ViewModels
 }
 
@@ -65,7 +152,7 @@ extension DIContainer {
 }
 
 extension EnvironmentValues {
-    @Entry var injected: DIContainer = DIContainer( appState: .init(AppState()), viewModels: .stub)
+    @Entry var injected: DIContainer = DIContainer( appState:  AppState(), viewModels: .stub)
 }
 
 extension View {

@@ -16,9 +16,9 @@ protocol WishListViewModelProtocol {
 struct WishListViewModel: WishListViewModelProtocol {
     
     let repository: WishListRepositoryProtocol
-    let appState: Store<AppState>
+    let appState: AppState
     
-    init( repository: WishListRepositoryProtocol, appState: Store<AppState>) {
+    init( repository: WishListRepositoryProtocol, appState: AppState) {
         self.repository = repository
         self.appState = appState
     }
@@ -26,13 +26,9 @@ struct WishListViewModel: WishListViewModelProtocol {
     func fetchWishListProducts(products:[Product],  userId: String) async throws -> [Product] {
         
         do {
-            let cancelBag = CancelBag()
-            appState[\.userData.WishListProducts].setIsLoading(cancelBag: cancelBag)
-            
             let response = try await repository.getWishListProducts(for: userId)
-            appState[\.userData.WishListProducts] = .loaded(response.data)
+            await  appState.setWishlist(response.data)
             return response.data
-            
         } catch {
             print("Failed to request products")
             throw WishListError.failedToFetchProducts
@@ -41,12 +37,8 @@ struct WishListViewModel: WishListViewModelProtocol {
     
     func deleteProduct(for userId: String, productId: String) async throws -> Product {
         do {
-            
             let response = try await repository.deleteWishListProduct(for: userId, productID: productId)
-          //  appState[\.userData.WishListProducts] =
-                //.value?.removeAll(where: { $0.id == response.data.id })
-            
-          //  appState[\.userData.WishListProducts].value?.removeFirst(where: { $0.id == response.data.id })
+            await  appState.removeFromWishlist(product: response.data)
             return response.data
         } catch {
             throw WishListError.failedToDeleteProduct

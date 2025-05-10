@@ -54,7 +54,7 @@ private extension ProductsGridView {
         NavigationStack (path: $navigationPath) {
             ScrollView {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(minimum: 100)), count: 2), spacing: 8) {
-                    ForEach(products) { product in
+                    ForEach(injected.appState.products) { product in
                         ProductView(product: product,
                                     onToggle: {
                             deleteOrAddToProductFaviorates(productId: product.id,

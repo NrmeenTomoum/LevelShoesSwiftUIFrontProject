@@ -15,11 +15,11 @@ struct AppEnvironment {
 extension AppEnvironment {
     
     static func bootstrap() -> AppEnvironment {
-        let appState = Store<AppState>(AppState())
+        let appState = AppState()
         let session = configuredURLSession()
         let repositories = configuredWebRepositories(session: session)
         let viewModels = configuredViewModels(repositories: repositories, appState: appState)
-        return AppEnvironment(diContainer: .init(appState: appState, viewModels: viewModels))
+        return AppEnvironment(diContainer: .init(appState: appState, viewModels: viewModels) )
     }
     
     private static func configuredURLSession() -> URLSessionProtocol {
@@ -41,7 +41,7 @@ extension AppEnvironment {
     }
     
     private static func configuredViewModels(
-        repositories: DIContainer.Repositories, appState: Store<AppState> ) -> DIContainer.ViewModels {
+        repositories: DIContainer.Repositories, appState: AppState) -> DIContainer.ViewModels {
             let productListViewModel = ProductListViewModel(
                 productRepository: repositories.productRepository, wishListRepository: repositories.wishListRepository, appState: appState)
             let wishListViewModel = WishListViewModel(repository: repositories.wishListRepository, appState: appState)

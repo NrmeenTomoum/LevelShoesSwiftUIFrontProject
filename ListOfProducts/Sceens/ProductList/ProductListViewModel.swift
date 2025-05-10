@@ -17,10 +17,10 @@ protocol ProductListViewModelProtocol {
 struct ProductListViewModel: ProductListViewModelProtocol {
     let wishListRepository: WishListRepositoryProtocol
     let  productRepository: ProductRepositoryProtocol
-    let appState: Store<AppState>
+    let appState: AppState
     
     init( productRepository: ProductRepositoryProtocol, wishListRepository: WishListRepositoryProtocol,
-          appState: Store<AppState>) {
+          appState: AppState) {
         self.productRepository = productRepository
         self.wishListRepository = wishListRepository
         self.appState = appState
@@ -30,10 +30,6 @@ struct ProductListViewModel: ProductListViewModelProtocol {
         do {
             let cancelBag = CancelBag()
 
-            // Fetch products and wishlist in parallel
-              appState[\.userData.products].setIsLoading(cancelBag: cancelBag)
-             appState[\.userData.WishListProducts].setIsLoading(cancelBag: cancelBag)
-
             async let productsFetch = self.fetchProducts(userId: userId)
             async let wishlistFetch = self.fetchWishListProducts(userId: userId)
             var (products, wishlistProducts) = try await (productsFetch, wishlistFetch)
@@ -41,11 +37,9 @@ struct ProductListViewModel: ProductListViewModelProtocol {
             for i in 0..<products.count {
                 products[i].isFavorite = wishlistProducts.contains(products[i])
             }
+            await  appState.setproducts(products)
+            await  appState.setWishlist(wishlistProducts)
             
-
-            await appState[\.userData.products] = .loaded(products)
-            await  appState[\.userData.WishListProducts] = .loaded(wishlistProducts)
-
             return products
         } catch {
             throw ProductError.failedToLoadData
@@ -85,6 +79,7 @@ struct ProductListViewModel: ProductListViewModelProtocol {
         do{
             let response = try await wishListRepository.deleteWishListProduct(for: userId,
                                                                               productID: productId)
+            await  appState.removeFromWishlist(product: response.data)
             return response.data
         } catch {
             throw ProductError.faiiledToDelete
@@ -95,6 +90,7 @@ struct ProductListViewModel: ProductListViewModelProtocol {
         do {
             let response = try await wishListRepository.addWishListProduct(for: userId,
                                                                            productID: productId)
+            await appState.addToWishlist(product: response.data)
             return response.data
         } catch {
             throw ProductError.failedToAdd

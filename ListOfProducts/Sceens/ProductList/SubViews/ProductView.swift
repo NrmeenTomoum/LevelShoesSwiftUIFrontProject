@@ -20,7 +20,7 @@ struct ProductView: View {
                         Button(action: {
                             onToggle()
                         }) {
-                            Image(systemName: injected.appState[\.userData].isInWishlist(product) ? "heart.fill": "heart")
+                            Image(systemName: injected.appState.isInWishlist(product) ? "heart.fill": "heart")
                                 .resizable()
                                 .foregroundColor(.black)
                                 .frame(width: 20, height: 20)
