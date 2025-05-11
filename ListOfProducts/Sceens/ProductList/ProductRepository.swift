@@ -7,7 +7,7 @@
 import Foundation
 
 protocol ProductRepositoryProtocol: NetworkProtocol {
-    func getProducts() async throws -> ApiResponse<[Product]>
+    func getProducts(page: Int) async throws -> ApiResponse<[Product]>
 }
 
 struct ProductRepository: ProductRepositoryProtocol {
@@ -18,7 +18,8 @@ struct ProductRepository: ProductRepositoryProtocol {
         self.session = session
     }
     
-    func getProducts() async throws -> ApiResponse<[Product]> {
-        return try await request(ProductEndpoint.products, session: session)
+    func getProducts(page: Int = 1) async throws -> ApiResponse<[Product]> {
+        return try await request(ProductEndpoint.products(page, 8)
+                                 ,session: session)
     }
 }

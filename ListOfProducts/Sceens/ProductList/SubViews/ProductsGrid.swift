@@ -12,13 +12,14 @@ struct ProductsGridView: View {
     @Environment(\.injected) private var injected: DIContainer
     @State var products: [Product] = []
     @State var productsUpdtaesInfo:  Loadable<[Product]>
+    @State private var isLoadMore = false
 
     @State private(set) var productsState: Loadable<[Product]>
     @State private(set) var stateofProductChanged: Loadable<Product>
     
     @State private var selectedScreen: Screen?
     @State private var navigationPath = NavigationPath()
-    
+    @State private var pageNumber: Int = 1
     init(state: Loadable<[Product]> = .notRequested) {
         self._productsState = .init(initialValue: state)
         self._stateofProductChanged = .init(initialValue: .notRequested)
@@ -60,6 +61,9 @@ private extension ProductsGridView {
                             deleteOrAddToProductFaviorates(productId: product.id,
                                                            isFavorite: !injected.appState.isInWishlist(product))
                         })
+                        .onAppear {
+                            loadMoreIfNeeded(currentItem: product)
+                        }
                     }
                 }
                 .navigationTitle(Text("New In"))
@@ -80,6 +84,12 @@ private extension ProductsGridView {
                         WishListView()
                     }
                 }
+            }
+            if isLoadMore {
+                ProgressView("Loading more...")
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 50)
+                    .padding(.vertical)
             }
         }
         
@@ -125,4 +135,20 @@ private extension ProductsGridView {
         }
     }
     
+    private func loadMoreIfNeeded(currentItem: Product) {
+        guard !isLoadMore, currentItem == injected.appState.products.last else { return }
+        loadMore()
+    }
+    
+    private func loadMore() {
+        isLoadMore = true
+       Task {
+        defer {
+               isLoadMore = false
+           }
+           pageNumber += 1
+           try await  injected.viewModels.productViewModel.fetchProducts(userId: "68150b6a29021b5984886601", pageNumber: pageNumber)
+        }
+       
+        }
 }

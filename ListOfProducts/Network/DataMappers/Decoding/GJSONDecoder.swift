@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - JSONDecoder
 
-public final class GJSONDecoder: JSONDecoder {
+public final class GJSONDecoder: JSONDecoder, @unchecked Sendable {
     public init(_ decodingStrategy: JSONDecoder.KeyDecodingStrategy = .convertFromSnakeCase) {
         super.init()
             //keyDecodingStrategy = decodingStrategy

@@ -19,7 +19,8 @@ struct ImagesPageView: View {
         AsyncImage(url: URL(string: images.url)) { phase in
             switch phase {
             case .empty:
-                ProgressView()
+                Color.gray.opacity(0.1)
+                    .frame(height: 250)
             case .success(let image):
                 image
                     .resizable()

@@ -9,7 +9,7 @@ import Combine
 import Observation
 
 protocol ProductListViewModelProtocol {
-    
+    func fetchProducts(userId: String, pageNumber: Int) async throws -> [Product]
     func fetchData(userId: String) async throws -> [Product]
     func onToggle(userId: String, productId: String, isFavorite: Bool) async throws -> Product
 }
@@ -28,8 +28,6 @@ struct ProductListViewModel: ProductListViewModelProtocol {
     
     func fetchData( userId: String) async throws -> [Product] {
         do {
-            let cancelBag = CancelBag()
-
             async let productsFetch = self.fetchProducts(userId: userId)
             async let wishlistFetch = self.fetchWishListProducts(userId: userId)
             var (products, wishlistProducts) = try await (productsFetch, wishlistFetch)
@@ -37,19 +35,22 @@ struct ProductListViewModel: ProductListViewModelProtocol {
             for i in 0..<products.count {
                 products[i].isFavorite = wishlistProducts.contains(products[i])
             }
-            await  appState.setproducts(products)
-            await  appState.setWishlist(wishlistProducts)
-            
+
             return products
         } catch {
             throw ProductError.failedToLoadData
         }
     }
     
-    func fetchProducts(userId: String) async throws -> [Product] {
+    func fetchProducts(userId: String, pageNumber: Int = 1) async throws -> [Product] {
         do {
-            let response = try await productRepository.getProducts()
-            print(response.data.count)
+            let response = try await productRepository.getProducts(page: pageNumber)
+            if pageNumber == 1 {
+                await  appState.setProducts(response.data)
+
+            } else {
+                await appState.appendToProducts(response.data)
+            }
             return response.data
         } catch {
             throw ProductError.failedToLoadData
@@ -59,7 +60,7 @@ struct ProductListViewModel: ProductListViewModelProtocol {
     func fetchWishListProducts(userId: String) async throws -> [Product] {
         do {
             let response = try await wishListRepository.getWishListProducts(for: userId)
-            print(response.data.count)
+            await  appState.setWishlist(response.data)
             return response.data
         } catch {
             throw ProductError.failedToLoadData
@@ -122,6 +123,10 @@ extension ProductError: LocalizedError {
 
 
 struct StubProductListViewModel: ProductListViewModelProtocol {
+    func fetchProducts(userId: String, pageNumber: Int) async throws -> [Product]{
+        throw ValueIsMissingError()
+    }
+    
     func fetchData(userId: String) async throws -> [Product] {
         throw ValueIsMissingError()
     }

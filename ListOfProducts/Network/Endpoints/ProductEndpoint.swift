@@ -8,7 +8,7 @@
 import Foundation
 
 enum ProductEndpoint {
-    case products
+    case products(Int,Int)
 }
 
 extension ProductEndpoint: Endpoint {
@@ -36,8 +36,9 @@ extension ProductEndpoint: Endpoint {
     
     var task: EncodingTask {
         switch self {
-        case .products:
-            return .plain
+        case .products(let page,let perPage):
+            return .url(["page":page,
+                           "perPage": perPage])
         }
     }
 }

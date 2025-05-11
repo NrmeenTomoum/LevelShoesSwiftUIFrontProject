@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - JSONEncoder
 
-public final class GJSONEncoder: JSONEncoder, GEncoder {
+public final class GJSONEncoder: JSONEncoder, GEncoder, @unchecked Sendable {
     override public init() {
         super.init()
         keyEncodingStrategy = .convertToSnakeCase

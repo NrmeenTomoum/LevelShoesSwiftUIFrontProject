@@ -27,7 +27,17 @@ class AppState{
         }
     }
     
-    func setproducts(_ products: [Product]) async {
+    func appendToProducts(_ products: [Product]) async {
+        await store.appendProducts(products)
+        await refreshProducts()
+    }
+    
+    func appendToWishlist(_ products: [Product]) async {
+        await store.appendWishListProducts(products)
+        await refreshWishlistState()
+    }
+    
+    func setProducts(_ products: [Product]) async {
         await store.setProducts(products)
         await refreshProducts()
     }
@@ -84,10 +94,9 @@ extension AppState {
             self.products = products
         }
         
-        func appendproducts(_ products: [Product]) {
+        func appendProducts(_ products: [Product]) {
             self.products.append(contentsOf: products)
         }
-        
         
         func setWishListProducts(_ products: [Product]) {
             self.wishlist = products
